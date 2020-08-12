@@ -1,6 +1,10 @@
 # HalBotDiscord
  Hello friends, this is a continuation of the Hal3000 branch of the callofcthullhubot repository.
  This will work as a cyberpunk rules bot for a campaign that I am developing
+```
+Python 3.5+
+discord.py
+```
 ## Version
  This is version Hal Alpha 0.0.1
 ## Donate 
