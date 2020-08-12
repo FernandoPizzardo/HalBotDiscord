@@ -1,0 +1,8 @@
+@client.event
+async def on_error(event, *args, **kwargs):
+    with open('err.log', 'a') as f:
+        if event == 'on_message':
+            f.write(f'Unhandled message: {args[0]}\n')
+        else:
+            raise
+Unhandled message: <Message id=742960636472066068 channel=<TextChannel id=742956467279101992 name='ultimate-life-form' position=2 nsfw=False news=False category_id=737784656010805408> type=<MessageType.default: 0> author=<Member id=418101968557572097 name='Pizzardo' discriminator='1692' bot=False nick=None guild=<Guild id=737784655499100172 name="Fernando's Kingdom" shard_id=None chunked=True member_count=9>> flags=<MessageFlags value=0>>
