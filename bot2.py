@@ -1,7 +1,9 @@
+import fnmatch
+import os
 import random
 
 import discord
-from discord import message
+from discord import message, member
 from discord.ext import commands
 import requests
 from bs4 import BeautifulSoup
@@ -126,25 +128,23 @@ async def get_date(ctx, date):
     await ctx.send(response)
 
 
-@bot.command(name='star', help='Crawl de star wars no Discord')
+@bot.command(name='star', help='Crawl de star wars no Discord, mande list para saber mais')
 async def star_wars(ctx, subject='', *especification):
     if subject == '':
         response = 'Qual filme?'
-    elif subject == 'list'
+    elif subject == 'list':
         list_of_files = os.listdir('wars')
         pattern = '*.txt'
         list_of_movies= [entry.replace('.txt', '') for entry in list_of_files if fnmatch.fnmatch(entry, pattern)]
-        response = 'os filmes disponíveis são:\n\n'
-        for movie in list_of_movies
+        response = 'Os filmes disponíveis são:\n\n'
+        for movie in list_of_movies:
             response = response + movie + '\n'
-    else
+    else:
         try:
-            response = star_wars(subject, *especification)
+            response = " A long time ago, in a galaxy far, far, away... \n" + read_movie(subject, *especification)
         except FileNotFoundError:
-            response = 'I am sorry {member.name} im afraid i cant do that'
-            
-    await ctx.send(' A long time ago, in a galaxy far, far, away...')
-    await ctx.send('https://media1.tenor.com/images/75c2599ef883d044574f59f1cebf3d92/tenor.gif?itemid=14083149')
+            response = 'I am sorry ' + {member.name} + ' im afraid i cant do that'
+
     await ctx.send(response)
 
 
