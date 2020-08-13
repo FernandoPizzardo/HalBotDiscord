@@ -12,8 +12,16 @@ TOKEN = 'NzQyODg1ODY1NjE2ODM0Njcy.XzMoYA.7sXtZbYQZeLfazUxytX1598Mljo'
 bot = commands.Bot(command_prefix='>')
 client = discord.Client()
 
-with open(f'wars/SwIV.txt', 'r') as f:
-    data = f.read()
+# Funções
+
+def read_movie(*movie):
+    expression = ''
+    for word in movie:
+        expression = expression + '/' + word
+        print(expression)
+    with open(f'wars/{expression}.txt', mode='r') as f:
+        data = f.read()
+    return data
 
 
 def check_date(log_date):
@@ -84,10 +92,6 @@ async def blade_runner(ctx):
     await ctx.send(response)
 
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
 
 
 @bot.command(name='date', help="Pull's info from the date from wikipedia(MM/DD/YYYY)")
@@ -122,9 +126,23 @@ async def get_date(ctx, date):
     await ctx.send(response)
 
 
-@bot.command(name='star', help='Crawl de uma nova esperança no Discord')
-async def star_wars(ctx):
-    response = data
+@bot.command(name='star', help='Crawl de star wars no Discord')
+async def star_wars(ctx, subject='', *especification):
+    if subject == '':
+        response = 'Qual filme?'
+    elif subject == 'list'
+        list_of_files = os.listdir('wars')
+        pattern = '*.txt'
+        list_of_movies= [entry.replace('.txt', '') for entry in list_of_files if fnmatch.fnmatch(entry, pattern)]
+        response = 'os filmes disponíveis são:\n\n'
+        for movie in list_of_movies
+            response = response + movie + '\n'
+    else
+        try:
+            response = star_wars(subject, *especification)
+        except FileNotFoundError:
+            response = 'I am sorry {member.name} im afraid i cant do that'
+            
     await ctx.send(' A long time ago, in a galaxy far, far, away...')
     await ctx.send('https://media1.tenor.com/images/75c2599ef883d044574f59f1cebf3d92/tenor.gif?itemid=14083149')
     await ctx.send(response)
